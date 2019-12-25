@@ -1,0 +1,16 @@
+body { 
+	font-family:Microsoft JhengHei;
+	color: #464646;
+}
+.formArea {
+	padding: 20px;
+}
+.navbar {
+	background-color: #41A85F;
+}
+.failedText {
+	color: red;
+}
+.successfulText {
+	color: dodgerblue;
+}
