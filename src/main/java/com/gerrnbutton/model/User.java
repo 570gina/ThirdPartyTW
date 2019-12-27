@@ -1,7 +1,6 @@
 package com.gerrnbutton.model;
 
 import lombok.Data;
-
 import javax.persistence.*;
 import java.util.Set;
 

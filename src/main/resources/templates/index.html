@@ -16,24 +16,15 @@
 		<a class="navbar-brand" href="/"><img src="/img/green-earth-w.png" width="30px"> Third Party</a>
 	<div class="collapse navbar-collapse" id="collapsibleNavbar">
 		<ul class="navbar-nav">
-			<li class="nav-item">
-				<a class="nav-link" href="">資料管理</a>
-			</li>
-		</ul>
-		<ul class="navbar-nav">
-			<li class="nav-item">
-				<a class="nav-link" href="">授權</a>
-			</li>
-		</ul>
-		<ul class="navbar-nav">
 		  <li class="nav-item">
 			<a class="nav-link" href="perform_logout">登出</a>
 		  </li>  
 		</ul>
-	  </div> 
+	  </div>
 	</nav>
-
-
-
+	<div class="padArea">
+		<button type="button" class="btn btn-light" id="authBtn" onclick="javascript:location.href='https://140.96.170.47:60107/dialog/authorize?redirect_uri=http://localhost:8090/redirect&response_type=code&client_id=THIRD_PARTY&scope=FB=1_3_4_5_13_14'">連結我的資料</button>
+	</div>
+	<script src="/js/index.js"></script>
 </body>
 </html>

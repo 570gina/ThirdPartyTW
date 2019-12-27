@@ -15,17 +15,15 @@
 	<nav class="navbar navbar-expand-sm navbar-dark">
 		<a class="navbar-brand" href="/"><img src="/img/green-earth-w.png" width="30px"> Third Party</a>
 	</nav>
-	<div>
-	<div class="formArea">
+	<div class="padArea">
 		<form action="perform_login" method="post">
 			<p><span class="failedText" th:unless="${param.error == null}" th:text="登入失敗"></span></p>
 			<p><span class="successfulText" th:unless="${param.logout == null}" th:text="你已經登出"></span></p>
 			<p><span class="successfulText" th:unless="${param.registered == null}" th:text="註冊成功"></span></p>
-			<p>帳號：<input type="text" name="username" required autofocus/></p>
-			<p>密碼：<input type="password" name="password" required /></p>
+			<p>帳號：<input type="text" name="username" maxlength="20" required autofocus/></p>
+			<p>密碼：<input type="password" name="password" maxlength="20" required /></p>
 		　	<p><input type="submit" value="登入">&emsp;尚未有帳號？ <a href="/register">註冊</a></p>
 		</form>
-		
 	</div>
 </body>
 </html>

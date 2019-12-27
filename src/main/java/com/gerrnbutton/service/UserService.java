@@ -18,15 +18,19 @@ public class UserService {
     private UserRepository userRepository;
     @Autowired
     private RoleRepository roleRepository;
-
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
-    public void insertUser(User user){
+    public void insertUser(User user) {
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         Role userRole = roleRepository.findByRole("USER");
         user.setRoles(new HashSet<Role>(Arrays.asList(userRole)));
         userRepository.save(user);
+    };
+
+    public User searchID(String name){
+        User user = userRepository.findByUsername(name);
+        return user;
     };
 
 
