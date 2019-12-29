@@ -27,7 +27,13 @@ public class AjaxRestController {
 
     @GetMapping("/getChartData")
     public String getChartData(Principal principal){
-        cmdService.getUsagePoints(authorizationService.searchAuthByUser(userService.searchID(principal.getName())));
-        return "";
+        return cmdService.getEnergyData(authorizationService.searchAuthByUser(userService.searchID(principal.getName())), 0);
     }
+
+    @GetMapping("/updateMydata")
+    public String updateMydata(String code, Principal principal) {
+        return cmdService.getEnergyData(authorizationService.searchAuthByUser(userService.searchID(principal.getName())), 1);
+    }
+
 }
+

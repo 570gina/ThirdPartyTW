@@ -1,36 +1,28 @@
 package com.gerrnbutton.entity.espi;
 
 import lombok.Data;
-import org.springframework.beans.factory.annotation.Autowired;
-
-import javax.persistence.*;
 
 @Data
-@Entity
-@Table(name = "interval_day")
 public class IntervalDay {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "interval_day_id")
     private int id;
-
-    @ManyToOne
-    @JoinColumn
-    private IntervalBlock intervalBlock;
-
-    @Column(name = "data")
-    private String data;
-
-    @Column(name = "year")
-    private String year;
-
-    @Column(name = "month")
-    private String month;
-
-    @Column(name = "day")
-    private String day;
-
-    @Column(name = "cost")
+    private int[] data;
+    private int year;
+    private int month;
+    private int day;
+    private int week;
     private int cost;
+    public IntervalDay(){
+        cost = 0;
+        data = new int[24];
+        for (int i = 0; i < data.length; i++) {
+            data[i] = 0;
+        }
+    }
+    public void addCost(int cost){
+        this.cost += cost;
+    }
+    public void addData(int value, int index){
+        data[index] += value;
+    }
 
 }

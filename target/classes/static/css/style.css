@@ -19,3 +19,32 @@ body {
 	display: none;
 	padding: 20px;
 }
+#updated {
+	font-size: 15px;
+	float: right;
+	color: #A8A8A8;
+}
+#authBtn {
+	display: none;
+}
+#updateBtn {
+	display: none;
+}
+
+#high {
+	color: red;
+}
+#low {
+	color: blue;
+}
+#note {
+	color: #A8A8A8;
+}
+#chart{
+	display: none;
+}
+.row {
+	padding-left: 15px;
+	padding-right: 15px;
+	padding-bottom: 15px;
+}
