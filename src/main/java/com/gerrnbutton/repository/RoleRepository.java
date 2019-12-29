@@ -1,6 +1,6 @@
 package com.gerrnbutton.repository;
 
-import com.gerrnbutton.model.Role;
+import com.gerrnbutton.entity.Role;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

@@ -1,7 +1,7 @@
 package com.gerrnbutton.service;
 
-import com.gerrnbutton.model.Role;
-import com.gerrnbutton.model.User;
+import com.gerrnbutton.entity.Role;
+import com.gerrnbutton.entity.User;
 import com.gerrnbutton.repository.RoleRepository;
 import com.gerrnbutton.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,9 +29,6 @@ public class UserService {
     };
 
     public User searchID(String name){
-        User user = userRepository.findByUsername(name);
-        return user;
+        return userRepository.findByUsername(name);
     };
-
-
 }

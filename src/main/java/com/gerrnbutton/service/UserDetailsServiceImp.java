@@ -22,9 +22,7 @@ public class UserDetailsServiceImp implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username)
             throws UsernameNotFoundException {
-
-        com.gerrnbutton.model.User appUser = userRepository.findByUsername(username);
-        PasswordEncoder encoder = new BCryptPasswordEncoder();
+        com.gerrnbutton.entity.User appUser = userRepository.findByUsername(username);
 
         if (appUser == null) {
             throw new UsernameNotFoundException(username + " not found");
