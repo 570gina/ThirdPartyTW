@@ -45,7 +45,6 @@ public class CMDService {
 
     public void updateData(Authorization authorization) {
         String url = "http://140.121.196.23:6020/RetailCustomer/" + authorization.getNumber() + "/DownloadMyData/UsagePoint/1";
-        System.out.println(url);
         RestTemplate restTemplate = new RestTemplate();
         HttpHeaders headers = new HttpHeaders();
         headers.set("Authorization", authorization.getTokenType() + " " + authorization.getAccessToken());

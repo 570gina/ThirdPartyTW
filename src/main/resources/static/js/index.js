@@ -17,7 +17,6 @@ $(document).ready(function(){
         success: function(response)  {
             if(response == "false") $("#authBtn").show();
             else {
-              //  getNumber();
                 getChartData();
             }
         },
@@ -37,8 +36,9 @@ function getChartData() {
             $("#updated").empty().append("&nbsp;&nbsp;最後更新：" + response.updated);
             $("#title").empty().append(response.title);
             intervalData = JSON.parse(response.intervalData).intervalDayList
+            $("#chartArea").empty();
             drawChart();
-            $("#chart").show();
+            $("#chartInfo").show();
         },
         error: function(xhr, ajaxOptions, thrownError) {
             $("#loadingGif").hide();
@@ -52,7 +52,7 @@ function drawChart() {
     var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
     var tempArr = [];
     var datasets = [];
-    var mon, day;
+    var mon, day, year;
     var sum;
     if (state == "0") {
         sum = 0;
@@ -60,6 +60,7 @@ function drawChart() {
             mon = parseInt(intervalData[i].month);
             sum = add(sum, intervalData[i].data);
             tempArr[mon-1] = sum;
+            year = intervalData[i].year;
         }
         var result = analyses(tempArr);
         $("#high").empty().append("最高用電：" + result[0]);
@@ -70,7 +71,7 @@ function drawChart() {
         $("#note").empty().append(note);
 
         var data = new Object();
-        data.label = "2018";
+        data.label = year;
         data.borderColor = color[0];
         data.backgroundColor = color[0];
         data.pointHoverRadius = 6;
