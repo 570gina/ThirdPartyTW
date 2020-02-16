@@ -88,16 +88,6 @@ public class AuthorizationService {
         return authorizationRepository.findByUser(user);
     }
 
-    private String calculateTime(int datatime){
-        Date date = new Date();
-        Calendar c = Calendar.getInstance();
-        c.setTime(date);
-        c.add(Calendar.SECOND, datatime);
-        date = c.getTime();
-        String strDateFormat = "yyyy-MM-dd HH:mm:ss";
-        DateFormat dateFormat = new SimpleDateFormat(strDateFormat);
-        return dateFormat.format(date);
-    }
     //SSL closed
     private RestTemplate getRestTemplate() throws KeyStoreException, NoSuchAlgorithmException, KeyManagementException {
         TrustStrategy acceptingTrustStrategy = new TrustStrategy() {
@@ -113,5 +103,16 @@ public class AuthorizationService {
         requestFactory.setHttpClient(httpClient);
         RestTemplate restTemplate = new RestTemplate(requestFactory);
         return restTemplate;
+    }
+
+    private String calculateTime(int datatime){
+        Date date = new Date();
+        Calendar c = Calendar.getInstance();
+        c.setTime(date);
+        c.add(Calendar.SECOND, datatime);
+        date = c.getTime();
+        String strDateFormat = "yyyy-MM-dd HH:mm:ss";
+        DateFormat dateFormat = new SimpleDateFormat(strDateFormat);
+        return dateFormat.format(date);
     }
 }

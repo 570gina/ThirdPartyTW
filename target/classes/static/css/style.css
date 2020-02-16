@@ -23,6 +23,7 @@ body {
 	font-size: 15px;
 	float: right;
 	color: #A8A8A8;
+	display: none;
 }
 #authBtn {
 	display: none;
@@ -41,6 +42,17 @@ body {
 }
 #chartInfo{
 	display: none;
+}
+#chart1{
+	display: none;
+}
+#chart2{
+	display: none;
+}
+#left {
+	display: none;
+	float:right;
+	width: 50px;
 }
 .row {
 	padding-left: 15px;

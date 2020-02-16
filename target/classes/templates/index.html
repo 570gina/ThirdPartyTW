@@ -30,53 +30,25 @@
 </nav>
 <img src="/img/loading.gif" id="loadingGif">
 <div>
-    <div class="row">
-        <div class="col-md-3">
-            <div class="padArea">
-                <button type="button" class="btn btn-light" id="authBtn"
-                        onclick="javascript:location.href='https://140.96.170.47:60107/dialog/authorize?redirect_uri=http://localhost:8090/redirect&response_type=code&client_id=THIRD_PARTY&scope=FB=1_3_4_5_13_14'">
-                    連結我的資料
-                </button>
-                <button type="button" class="btn btn-light" id="updateBtn"
-                        onclick="updateMyData()">更新我的資料(測試中)
-                </button>
-            </div>
-            <div class="card" id="chartInfo">
-                <div class="card-body">
-                    <h4 id="title"></h4>
-                    <p>單位：瓦/小時</p>
-                    <hr>
-                    <div class="form-check">
-                        <label class="form-check-label" for="r1">
-                            <input type="radio" class="form-check-input" id="r1" name="optradio" value="0" checked>年
-                        </label>
-                    </div>
-                    <div class="form-check">
-                        <label class="form-check-label" for="r2">
-                            <input type="radio" class="form-check-input" id="r2" name="optradio" value="1">月
-                        </label>
-                    </div>
-                    <select class="custom-select" disabled = "true" id="selectYear">
-						<option value ="2018">2018</option>
-					</select>
-                    <hr>
-                    <p>
-						<span id = "high"></span><br>
-						<span id = "low"></span><br>
-						<span id = "avg"></span><br>
-						<span id = "sd"></span><br>
-                    </p>
-					<hr>
-					<p>
-						<span id = "note">提醒：</span>
-					</p>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-9">
-            <p id="updated"></p>
-            <div  id="chartArea"></div>
-        </div>
+    <div id="loading" class="padArea">
+		<button type="button" class="btn btn-light" id="authBtn"
+				onclick="javascript:location.href='https://140.96.170.47:60107/dialog/authorize?redirect_uri=http://localhost:8090/redirect&response_type=code&client_id=THIRD_PARTY&scope=FB=1_3_4_5_13_14'">
+			連結我的資料
+		</button>
+		<button type="button" class="btn btn-light" id="updateBtn"
+				onclick="updateMyData()">更新我的資料
+		</button>
+        <p id="updated"></p>
+        <div class="col-sm-8">
+			<img src="/img/left.png" id="left" onclick="drawChart1()">
+			<div id="chartInfo">
+				<br>
+				&nbsp;<label class="radio-inline"><input type="radio" name="optradio" value="value"checked>讀表值(Wh)</label>
+				&emsp;&emsp;<label class="radio-inline"><input type="radio" name="optradio" value="cost">電費(TWD)</label>
+			</div>
+			<div id="chart2"></div>
+			<div id="chart1"></div>
+		</div>
     </div>
 </div>
 

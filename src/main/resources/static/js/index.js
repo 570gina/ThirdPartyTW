@@ -1,16 +1,21 @@
-var intervalData =  "";
-var state = "0";
+var color = ["#ff6373", "#8BCDFF", "#FFEC3C", "#2C7AFF", "#ff8ef1", "#44AE52", "#8161FF", "#FFAF46", "#8E8E8E"];
+var months = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'];
+var state = "讀表值(Wh)";
+var readingData;
+var selectedMonthData;
+var selectedYear, selectedMonth;
 $(document).ready(function(){
-    $('input[type=radio][name=optradio]').change(function() {
-        state = this.value;
-        if (this.value == "1") {
-            $('#selectYear').prop('disabled', false);
-        }else{
-            $('#selectYear').prop('disabled', true);
+	$('input[type=radio][name=optradio]').change(function() {
+        if (this.value == 'value') {
+            state = "讀表值(Wh)";
         }
-        drawChart();
+        else if (this.value == 'cost') {
+			state = "電費(TWD)";
+        }
+		if (selectedMonthData) drawChart2()
+		else drawChart1();
     });
-
+	
     $.ajax({
         url: "/checkAuthState",
         dataType: "text",
@@ -27,18 +32,41 @@ $(document).ready(function(){
 });
 function getChartData() {
     $("#loadingGif").show();
+    $("#loading").hide();
     $.ajax({
-        url: "/getChartData",
+        url: "/connectMyData",
         dataType: "json",
         success: function(response)  {
-            $("#updateBtn").show();
             $("#loadingGif").hide();
-            $("#updated").empty().append("&nbsp;&nbsp;最後更新：" + response.updated);
-            $("#title").empty().append(response.title);
-            intervalData = JSON.parse(response.intervalData).intervalDayList
-            $("#chartArea").empty();
-            drawChart();
+            $("#updated").empty().append("&nbsp;&nbsp;最後更新：" + response[0]).show();
+			readingData = response;
+            drawChart1();
+            $("#loading").show();
+            $("#updateBtn").show();
+            $("#chart").show();
             $("#chartInfo").show();
+        },
+        error: function(xhr, ajaxOptions, thrownError) {
+            $("#loadingGif").hide();
+            $("#loading").show();
+            console.log("error: " + xhr.status + "\n" + thrownError);
+        }
+    });
+}
+function updateMyData() {
+    $("#loadingGif").show();
+    $("#loading").hide();
+    $.ajax({
+        url: "/updateMyData",
+        dataType: "json",
+        success: function(response)  {
+            $("#loadingGif").hide();
+            $("#updated").empty().append("&nbsp;&nbsp;最後更新：" + response[0]);
+            drawChart1(response[1]);
+            $("#loading").show();
+            $("#chart").show();
+            $("#chartInfo").show();
+            $('input[name="optradio"]')[0].checked = true;
         },
         error: function(xhr, ajaxOptions, thrownError) {
             $("#loadingGif").hide();
@@ -47,139 +75,161 @@ function getChartData() {
     });
 }
 
-function drawChart() {
-    var color = ["#ff6373", "#8BCDFF", "#FFEC3C", "#2C7AFF", "#ff8ef1", "#44AE52", "#8161FF", "#FFAF46", "#8E8E8E"];
-    var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-    var tempArr = [];
-    var datasets = [];
-    var mon, day, year;
-    var sum;
-    if (state == "0") {
-        sum = 0;
-        for (var i = 1; i < intervalData.length; i++) {
-            mon = parseInt(intervalData[i].month);
-            sum = add(sum, intervalData[i].data);
-            tempArr[mon-1] = sum;
-            year = intervalData[i].year;
-        }
-        var result = analyses(tempArr);
-        $("#high").empty().append("最高用電：" + result[0]);
-        $("#low").empty().append("最低用電：" + result[1]);
-        $("#avg").empty().append("平均：" + result[2]);
-        $("#sd").empty().append("標準差：" + result[3]);
-        var note = getYearNote(tempArr);
-        $("#note").empty().append(note);
-
-        var data = new Object();
-        data.label = year;
-        data.borderColor = color[0];
-        data.backgroundColor = color[0];
-        data.pointHoverRadius = 6;
-        data.fill = false;
-        data.data = tempArr;
+function drawChart1() {
+	selectedMonthData = null;
+	$("#right").hide();
+	$("#left").hide();
+	$("#chart1").empty().append("<canvas id='canvas1'></canvas>");
+	$("#chart1").show();
+	$("#chart2").hide();
+	var datasets = [];
+	color.sort(randomsort);
+	for (var i = 1; i<readingData.length; i++){
+		var data = new Object();
+		data.label = readingData[i][0];
+		data.borderColor = color[i];
+		data.backgroundColor = color[i];
+		data.pointRadius = 4,
+		data.pointHoverRadius = 8;
+		data.fill = false;
+		if(state == "讀表值(Wh)")
+			data.data = readingData[i].slice(1, 13);
+		else 
+			data.data = readingData[i].slice(13, 25);
         datasets.push(data);
-        tempArr = [];
-        $("#chartArea").empty().append("<canvas id='canvas'></canvas>");
-        var lineChartData = {
-            labels: months,
-            datasets: datasets
-        };
-        myLine = Chart.Line($("#canvas"), {
-            data: lineChartData,
-            options: {
-                responsive: true,
-                hoverMode: 'index',
-                stacked: false,
-                title: {
-                    display: true,
-                    text: 'All Data'
-                },
-                scales: {
-                    xAxes: [{
-                        display: true,
-                        scaleLabel: {
-                            display: true,
-                            labelString: 'Month'
-                        }
-                    }],
-                    yAxes: [{
-                        display: true,
-                        scaleLabel: {
-                            display: true,
-                            labelString: 'Value'
-                        }
-                    }]
+	}
+    var lineChartData = {
+        labels: months,
+        datasets: datasets
+    };
+	myLine = Chart.Line($("#canvas1"), {
+		data: lineChartData,
+		options: {
+			responsive: true,
+			hoverMode: 'index',
+			stacked: false,
+			title: {
+				display: false,
+			},
+			scales: {
+				xAxes: [{
+					display: true,
+					scaleLabel: {
+						display: true,
+						labelString: '月份'
+					}
+				}],
+				yAxes: [{
+					display: true,
+					scaleLabel: {
+						display: true,
+						labelString: state
+					}
+				}]
+			},
+			onClick: function (evt, item){
+			    if(item[0]) {
+					selectedYear = readingData[item[0]._datasetIndex+1][0];
+					selectedMonth = item[0]._index + 1;
+					$.ajax({
+						url: "/getSelectedMonthData",
+						data: {
+							year: selectedYear,	//year
+							month: selectedMonth	//month
+						},
+						dataType: "json",
+						success: function(response)  {
+							selectedMonthData = response;
+							drawChart2();
+						},
+						error: function(xhr, ajaxOptions, thrownError) {
+							console.log("error: " + xhr.status + "\n" + thrownError);
+						}
+					});
                 }
-            }
-        });
-    }else{
-        sum = 0;
-        mon = parseInt(intervalData[1].month);
-        for (var i = 1; i < intervalData.length; i++) {
-            if(mon == parseInt(intervalData[i].month)){
-                day = parseInt(intervalData[i].day);
-                sum = add(0, intervalData[i].data);
-                tempArr[day-1] = sum;
-            }else{
-                var data = new Object();
-                data.label = months[mon-1];
-                data.borderColor = color[mon-5];
-                data.backgroundColor = color[mon-5];
-                data.pointHoverRadius = 6;
-                data.fill = false;
-                data.data = tempArr;
-                datasets.push(data);
-                tempArr = [];
-                mon = intervalData[i].month;
-                day = parseInt(intervalData[i].day);
-                sum = add(0, intervalData[i].data);
-                tempArr[day-1] = sum;
-            }
-        }
-        var data = new Object();
-        data.label = months[mon-1];
-        data.borderColor = color[mon-5];
-        data.backgroundColor = color[mon-5];
-        data.pointHoverRadius = 6;
-        data.fill = false;
-        data.data = tempArr;
-        datasets.push(data);
-
-        $("#chartArea").append("<canvas id='canvas'></canvas>");
-        var lineChartData = {
-            labels: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31'],
-            datasets: datasets
-        };
-        myLine = Chart.Line($("#canvas"), {
-            data: lineChartData,
-            options: {
-                responsive: true,
-                hoverMode: 'index',
-                stacked: false,
-                title: {
-                    display: true,
-                    text: $('#selectYear option:selected').val() + "年"
-                },
-                scales: {
-                    xAxes: [{
-                        display: true,
-                        scaleLabel: {
-                            display: true,
-                            labelString: 'Day'
-                        }
-                    }],
-                    yAxes: [{
-                        display: true,
-                        scaleLabel: {
-                            display: true,
-                            labelString: 'Value'
-                        }
-                    }]
-                }
-            }
-        });
-    }
+			}
+		}
+	});
+	if (selectedMonthData) $("#right").show();
 }
+
+function drawChart2(){
+	$("#right").hide();
+	$("#left").hide();
+	$("#chart2").empty().append("<canvas id='canvas2'></canvas>");
+	$("#chart2").show();
+	$("#chart1").hide();
+	var datasets = [];
+	var num = Math.round(selectedMonthData.length/2 - 1);
+	color.sort(randomsort);
+	
+	var data = new Object();
+	data.label = selectedYear + "/" + selectedMonth;
+	data.borderColor = color[0];
+	data.backgroundColor = color[0];
+	data.pointRadius = 4,
+	data.pointHoverRadius = 8;
+	data.fill = false;
+	if(state == "讀表值(Wh)")
+		data.data = selectedMonthData.slice(1, num+1);
+	else 
+		data.data = selectedMonthData.slice(num+1, num*2+1);
+    datasets.push(data);
+	var days = new Array(num);
+	days = initDays(days);
+	
+    var lineChartData = {
+        labels: days,
+        datasets: datasets
+    };
+	
+	myLine = Chart.Line($("#canvas2"), {
+		data: lineChartData,
+		options: {
+			responsive: true,
+			hoverMode: 'index',
+			stacked: false,
+			title: {
+				display: false,
+			},
+			scales: {
+				xAxes: [{
+					display: true,
+					scaleLabel: {
+						display: true,
+						labelString: '日'
+					}
+				}],
+				yAxes: [{
+					display: true,
+					scaleLabel: {
+						display: true,
+						labelString: state
+					}
+				}]
+			},
+			onClick: function (evt, item){
+			    
+			}
+		}
+	});
+	if (selectedMonthData) $("#left").show();
+	
+}
+
+
+function randomsort(a, b) {
+	return Math.random()>.5 ? -1 : 1;
+	//用Math.random()函式生成0~1之間的隨機數與0.5比較，返回-1或1
+}
+
+function initDays(days){
+	for(var i=0; i<days.length; i++){
+		days[i] = i+1;
+	}
+	return days;
+}
+
 function averageInterval(objArr){
     var sum = 0;
     for(var i=0; i<objArr.length; i++){
@@ -263,26 +313,4 @@ function getYearNote(arr){
     }else{
         return "提醒：目前暫無，需要更多的資料";
     }
-}
-
-function updateMyData() {
-    $("#loadingGif").show();
-    $("#chart").hide();
-    $.ajax({
-        url: "/updateMydata",
-        dataType: "json",
-        success: function(response)  {
-            $("#loadingGif").hide();
-            $("#updateBtn").show();
-            $("#updated").empty().append("&nbsp;&nbsp;最後更新：" + response.updated);
-            $("#title").empty().append(response.title);
-            intervalData = JSON.parse(response.intervalData).intervalDayList
-            drawChart();
-            $("#chart").show();
-        },
-        error: function(xhr, ajaxOptions, thrownError) {
-            $("#loadingGif").hide();
-            console.log("error: " + xhr.status + "\n" + thrownError);
-        }
-    });
 }
