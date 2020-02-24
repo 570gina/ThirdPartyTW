@@ -11,6 +11,7 @@ import org.apache.http.conn.ssl.TrustStrategy;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -41,6 +42,10 @@ public class AuthorizationService {
     private AuthorizationRepository authorizationRepository;
     @Autowired
     private UserRepository userRepository;
+    @Value("${server.address}")
+    private String serverAddress;
+    @Value("${server.port}")
+    private String serverPort;
 
     public Authorization auth(String code, Principal principal) throws NoSuchAlgorithmException, KeyStoreException, KeyManagementException {
         String client = "THIRD_PARTY:secret";
@@ -52,7 +57,9 @@ public class AuthorizationService {
         headers.set("Authorization", "Basic " + b64_basic);
         MultiValueMap<String, String> params= new LinkedMultiValueMap<String, String>();
         params.add("code", code);
-        params.add("redirect_uri", "http://localhost:8090/redirect");
+        String redirect_uri =  "http://"+serverAddress+":"+serverPort+"/redirect";
+        System.out.println(redirect_uri);
+        params.add("redirect_uri", redirect_uri);
         params.add("grant_type", "authorization_code");
         HttpEntity<MultiValueMap<String, String>> requestEntity = new HttpEntity<MultiValueMap<String, String>>(params, headers);
         ResponseEntity<Map> response = restTemplate.exchange(url, HttpMethod.POST, requestEntity, Map.class);

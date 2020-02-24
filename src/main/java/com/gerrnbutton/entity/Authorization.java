@@ -9,22 +9,22 @@ import javax.persistence.*;
 public class Authorization {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "authorization_id")
+    @Column(name = "authorization_id", length = 10)
     private int id;
 
-    @Column(name = "number")
+    @Column(name = "number", length = 30)
     private String 	number;
 
-    @Column(name = "access_token")
+    @Column(name = "access_token", length = 1000)
     private String 	accessToken;
 
-    @Column(name = "refresh_token")
+    @Column(name = "refresh_token", length = 1000)
     private String refreshToken;
 
-    @Column(name = "expires_in")
+    @Column(name = "expires_in", length = 30)
     private String 	expiresIn;
 
-    @Column(name = "token_type")
+    @Column(name = "token_type", length = 30)
     private String tokenType;
 
     @ManyToOne

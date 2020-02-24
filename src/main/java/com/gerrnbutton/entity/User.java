@@ -10,16 +10,16 @@ import java.util.Set;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "user_id")
+    @Column(name = "user_id", length = 10)
     private int id;
 
-    @Column(nullable = false, unique = true)
+    @Column(nullable = false, unique = true, length = 30)
     private String username;
 
-    @Column(name = "password")
+    @Column(name = "password", length = 100)
     private String password;
 
-    @Column(name = "name")
+    @Column(name = "name", length = 30)
     private String name;
 
     @ManyToMany(cascade = CascadeType.ALL)

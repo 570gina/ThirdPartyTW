@@ -24,6 +24,12 @@ public class UserService {
     public void insertUser(User user) {
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         Role userRole = roleRepository.findByRole("USER");
+        if(userRole == null){
+            userRole = new Role();
+            userRole.setRole("USER");
+            roleRepository.save(userRole);
+            userRole = roleRepository.findByRole("USER");
+        }
         user.setRoles(new HashSet<Role>(Arrays.asList(userRole)));
         userRepository.save(user);
     };
