@@ -34,4 +34,9 @@ public class IntervalReading {
         SimpleDateFormat sdf = new SimpleDateFormat("dd");
         return Integer.parseInt(sdf.format(date));
     }
+
+    public int getHour() {
+        SimpleDateFormat sdf = new SimpleDateFormat("HH");
+        return Integer.parseInt(sdf.format(date));
+    }
 }

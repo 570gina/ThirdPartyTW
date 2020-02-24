@@ -16,6 +16,7 @@ public class DataProcessingService {
         int previousYear = 0;
         ArrayList newData = new ArrayList();
         newData.add(usagePoint.getUpdate());
+        newData.add(usagePoint.getReadingType().getPowerOfTenMultiplier());
         int[] valueAndCost = new int[25];
         for (IntervalReading i : usagePoint.getList()){
             if(i.getYear() == previousYear){
@@ -52,9 +53,15 @@ public class DataProcessingService {
         }
         return g.toJson(newData);
     }
-    public String organizeDataByEachHour(String data){
+    public String organizeDataByEachHour(String data, String year, String month, String day){
         UsagePoint usagePoint = g.fromJson(data, UsagePoint.class);
-
-        return "";
+        int[] newData = new int[48];
+        for (IntervalReading i : usagePoint.getList()){
+            if(i.getYear() == Integer.parseInt(year) && i.getMonth() == Integer.parseInt(month) && i.getDay() == Integer.parseInt(day)){
+                newData[i.getHour()] = i.getValue();
+                newData[i.getHour()+24] = i.getCost();
+            }
+        }
+        return g.toJson(newData);
     }
 }

@@ -23,9 +23,9 @@ public class AjaxRestController {
     DataProcessingService dataProcessingService;
 
     @GetMapping("/checkAuthState")
-    public Boolean checkAuthState(Principal principal){
-        if(authorizationService.searchAuthByUser(userService.searchID(principal.getName())) == null) return false;
-        else return true;
+    public String checkAuthState(Principal principal){
+        if(authorizationService.searchAuthByUser(userService.searchID(principal.getName())) == null) return "null";
+        else return authorizationService.searchAuthByUser(userService.searchID(principal.getName())).getNumber();
     }
 
     @GetMapping("/connectMyData")
@@ -45,6 +45,13 @@ public class AjaxRestController {
         String data = cmdService.getEnergyData(authorizationService.searchAuthByUser(userService.searchID(principal.getName())), 0);
         return dataProcessingService.organizeDataByEachDay(data, year, month);
     }
+
+    @GetMapping("/getSelectedDayData")
+    public String getSelectedDayData(String year, String month, String day,  Principal principal) {
+        String data = cmdService.getEnergyData(authorizationService.searchAuthByUser(userService.searchID(principal.getName())), 0);
+        return dataProcessingService.organizeDataByEachHour(data, year, month, day);
+    }
+
 
 }
 

@@ -40,14 +40,16 @@
 		</button>
         <p id="updated"></p>
         <div class="col-sm-8">
-			<img src="/img/left.png" id="left" onclick="drawChart1()">
+			<img src="/img/left.png" id="left" onclick="back()">
 			<div id="chartInfo">
 				<br>
-				&nbsp;<label class="radio-inline"><input type="radio" name="optradio" value="value"checked>讀表值(Wh)</label>
+				&nbsp;<label class="radio-inline"><input type="radio" name="optradio" value="value"checked>讀表值(10<sup id="power"></sup> Wh)</label>
 				&emsp;&emsp;<label class="radio-inline"><input type="radio" name="optradio" value="cost">電費(TWD)</label>
-			</div>
-			<div id="chart2"></div>
-			<div id="chart1"></div>
+            </div>
+            <div id="chart3" class="chart"></div>
+			<div id="chart2" class="chart"></div>
+			<div id="chart1" class="chart"></div>
+			<div id="analysisResults"></div>
 		</div>
     </div>
 </div>

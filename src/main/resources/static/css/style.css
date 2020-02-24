@@ -8,12 +8,6 @@ body {
 .navbar {
 	background-color: #41A85F;
 }
-.failedText {
-	color: red;
-}
-.successfulText {
-	color: dodgerblue;
-}
 
 #loadingGif {
 	display: none;
@@ -31,28 +25,23 @@ body {
 #updateBtn {
 	display: none;
 }
-#high {
+.high {
 	color: red;
 }
-#low {
-	color: blue;
-}
-#note {
-	color: #A8A8A8;
+.low {
+	color: dodgerblue;
 }
 #chartInfo{
 	display: none;
 }
-#chart1{
-	display: none;
-}
-#chart2{
+.chart{
 	display: none;
 }
 #left {
 	display: none;
 	float:right;
-	width: 50px;
+	width: 40px;
+	cursor: pointer;
 }
 .row {
 	padding-left: 15px;
