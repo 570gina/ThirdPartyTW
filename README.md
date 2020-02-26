@@ -56,7 +56,9 @@
 │                 index.html
 │                 login.html
 │                 register.html
-└─target
+├─target
+└─test
+        ThirdParty_test.side
 ``` 
 
 -----------
@@ -127,7 +129,17 @@
     <img src="src/main/resources/static/screenshot/value_day.png" alt="value_day"  width="400"/>
     
     <img src="src/main/resources/static/screenshot/value_hour.png" alt="value_hour"  width="400"/>
-  
-  
+
+
+-----------
+
+- ### 測試 (**測試中)
+	- 準備
+		- [Selenium IDE](https://www.selenium.dev/downloads/)
+	- 步驟
+		1. 開啟 Selenium IDE
+		2. 點選 Open an existing project
+		3. 選擇 test/ThirdParty_test.side
+		4. 選擇 Run all tests
   
   
