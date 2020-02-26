@@ -1,0 +1,109 @@
+{
+  "id": "ce300690-d050-4b4c-b670-9a604c28b127",
+  "version": "2.0",
+  "name": "ThirdParty_test",
+  "url": "http://localhost:8090",
+  "tests": [{
+    "id": "eeb6cb5a-f237-468c-8926-616daa8bb010",
+    "name": "Chart_test",
+    "commands": [{
+      "id": "170f3a98-1178-45e0-9202-dfe37470f24f",
+      "comment": "",
+      "command": "open",
+      "target": "/login",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "ebed0435-6fbc-41af-8e2b-08cebe28d7b7",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "552x652",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "f1eaf7fe-21ed-4459-800b-92fc5135f10a",
+      "comment": "",
+      "command": "type",
+      "target": "name=username",
+      "targets": [
+        ["name=username", "name"],
+        ["css=p:nth-child(4) > input", "css:finder"],
+        ["xpath=//input[@name='username']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "user"
+    }, {
+      "id": "0117979c-9690-4acb-bfa4-8044b07b0c76",
+      "comment": "",
+      "command": "click",
+      "target": "name=password",
+      "targets": [
+        ["name=password", "name"],
+        ["css=p:nth-child(5) > input", "css:finder"],
+        ["xpath=//input[@name='password']", "xpath:attributes"],
+        ["xpath=//p[5]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "4f6dec63-42be-426f-882f-41a26221c190",
+      "comment": "",
+      "command": "type",
+      "target": "name=password",
+      "targets": [
+        ["name=password", "name"],
+        ["css=p:nth-child(5) > input", "css:finder"],
+        ["xpath=//input[@name='password']", "xpath:attributes"],
+        ["xpath=//p[5]/input", "xpath:position"]
+      ],
+      "value": "user"
+    }, {
+      "id": "648ca774-e4b4-4b8a-bfc7-ac2e9452fc20",
+      "comment": "",
+      "command": "click",
+      "target": "css=p:nth-child(6) > input",
+      "targets": [
+        ["css=p:nth-child(6) > input", "css:finder"],
+        ["xpath=//input[@value='登入']", "xpath:attributes"],
+        ["xpath=//p[6]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "2ae726bb-bfe2-4c85-9a46-c314994d28af",
+      "comment": "",
+      "command": "click",
+      "target": "css=.radio-inline:nth-child(3) > input",
+      "targets": [
+        ["css=.radio-inline:nth-child(3) > input", "css:finder"],
+        ["xpath=(//input[@name='optradio'])[2]", "xpath:attributes"],
+        ["xpath=//div[@id='chartInfo']/label[2]/input", "xpath:idRelative"],
+        ["xpath=//label[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "7175a452-66e6-49f9-9554-222ce5090b5c",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=登出",
+      "targets": [
+        ["linkText=登出", "linkText"],
+        ["css=.ml-auto .nav-link", "css:finder"],
+        ["xpath=//a[contains(text(),'登出')]", "xpath:link"],
+        ["xpath=//div[@id='collapsibleNavbar']/ul[2]/li/a", "xpath:idRelative"],
+        ["xpath=//a[contains(@href, 'perform_logout')]", "xpath:href"],
+        ["xpath=//li/a", "xpath:position"],
+        ["xpath=//a[contains(.,'登出')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }]
+  }],
+  "suites": [{
+    "id": "c6d5b2b7-e7b9-4945-8c4e-2a10c2ae1c45",
+    "name": "Default Suite",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": ["eeb6cb5a-f237-468c-8926-616daa8bb010"]
+  }],
+  "urls": ["http://localhost:8090/"],
+  "plugins": []
+}
