@@ -135,7 +135,17 @@
 
 - ### 測試 (**測試中)
 	- 準備
-		- [Selenium IDE](https://www.selenium.dev/downloads/)
+		- 安裝　[Selenium IDE](https://www.selenium.dev/downloads/)
+		- 若已經"執行過"此應用，必須清除資料庫後再進行測試 
+			- MySQL：進入 gb_thirdparty 資料庫
+			```
+			TRUNCATE TABLE authorization, user_role, user, role;
+			```
+			- Redis
+			```
+			redis-cli flushdb
+			```
+		- 執行應用程式 (Run JAR file)
 	- 步驟
 		1. 開啟 Selenium IDE
 		2. 點選 Open an existing project
