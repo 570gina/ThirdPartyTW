@@ -1,5 +1,5 @@
 # ThirdPartyTW
-使用 Green button CMD(connect my data) 獲取資料並用圖表呈現
+實作 Green button CMD (connect my data) 獲取台灣電力公司資料於此應用 (第三方應用程式) 並圖表化顯示。
 
 <img src="src/main/resources/static/screenshot/fee_month.png" alt="fee_month"  width="650"/>
 
@@ -118,7 +118,7 @@
   
     <img src="src/main/resources/static/screenshot/auth_accept.png" alt="auth_accept"  width="400"/>
 
-  等待資料 (使用CMD第一次取得或之後更新資料時需要一點時間)
+  等待資料 (使用 CMD 第一次取得或之後更新資料時需要一點時間)
   
     <img src="src/main/resources/static/screenshot/waiting.png" alt="waiting"  width="400"/>
     
@@ -130,7 +130,12 @@
     
     <img src="src/main/resources/static/screenshot/value_hour.png" alt="value_hour"  width="400"/>
 
+-----------
+	
+- ### 操作範例影片
 
+	[![ThirdPartyTW](http://img.youtube.com/vi/3ba6vUWto5E/0.jpg)](http://www.youtube.com/watch?v=3ba6vUWto5E "ThirdPartyTW")
+	
 -----------
 
 - ### 測試 (**測試中)
