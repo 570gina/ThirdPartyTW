@@ -58,7 +58,6 @@ public class AuthorizationService {
         MultiValueMap<String, String> params= new LinkedMultiValueMap<String, String>();
         params.add("code", code);
         String redirect_uri =  "http://"+serverAddress+":"+serverPort+"/redirect";
-        System.out.println(redirect_uri);
         params.add("redirect_uri", redirect_uri);
         params.add("grant_type", "authorization_code");
         HttpEntity<MultiValueMap<String, String>> requestEntity = new HttpEntity<MultiValueMap<String, String>>(params, headers);

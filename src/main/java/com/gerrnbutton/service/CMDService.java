@@ -3,6 +3,7 @@ package com.gerrnbutton.service;
 import com.gerrnbutton.entity.Authorization;
 import com.gerrnbutton.entity.espi.*;
 import com.google.gson.Gson;
+import org.apache.http.impl.client.HttpClients;
 import org.dom4j.Document;
 import org.dom4j.DocumentException;
 import org.dom4j.Element;
@@ -13,7 +14,11 @@ import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.client.ClientHttpRequestFactory;
+import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 import org.springframework.stereotype.Service;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 
 import java.io.StringReader;
@@ -28,17 +33,19 @@ public class CMDService {
     public String getEnergyData(Authorization authorization, int update) {
         if (redisTemplate.opsForValue().get(authorization.getNumber()) == null || update == 1)
             updateData(authorization);
-        return redisTemplate.opsForValue().get(authorization.getNumber())+"";
+         return redisTemplate.opsForValue().get(authorization.getNumber())+"";
     }
 
     public void updateData(Authorization authorization) {
         Gson gson = new Gson();
         String url = "http://140.121.196.23:6020/RetailCustomer/" + authorization.getNumber() + "/DownloadMyData/UsagePoint";
-        RestTemplate restTemplate = new RestTemplate();
-        HttpHeaders headers = new HttpHeaders();
-        headers.set("Authorization", authorization.getTokenType() + " " + authorization.getAccessToken());
-        HttpEntity<String> requestEntity = new HttpEntity<String>("body", headers);
-        ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.GET, requestEntity, String.class);
+        ClientHttpRequestFactory requestFactory = new HttpComponentsClientHttpRequestFactory(HttpClients.createDefault());
+        RestTemplate restTemplate = new RestTemplate(requestFactory);
+        //HttpHeaders headers = new HttpHeaders();
+      //  headers.set("Authorization", authorization.getTokenType() + " " + authorization.getAccessToken());
+        //HttpEntity<MultiValueMap<String, String>> requestEntity = new HttpEntity<MultiValueMap<String, String>>(null, headers);
+
+        ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.GET, null, String.class);
         redisTemplate.opsForValue().set(authorization.getNumber(), gson.toJson(parseXML(response.getBody())));
     }
 

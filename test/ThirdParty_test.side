@@ -4,24 +4,109 @@
   "name": "ThirdParty_test",
   "url": "http://localhost:8090",
   "tests": [{
-    "id": "eeb6cb5a-f237-468c-8926-616daa8bb010",
-    "name": "Chart_test",
+    "id": "4b83a994-539b-42ad-947a-29f5cea7dde9",
+    "name": "1. NewUserConnectMyData",
     "commands": [{
-      "id": "170f3a98-1178-45e0-9202-dfe37470f24f",
+      "id": "ed5e223d-f819-43b9-8a4b-843bd79b5c72",
       "comment": "",
       "command": "open",
       "target": "/login",
       "targets": [],
       "value": ""
     }, {
-      "id": "ebed0435-6fbc-41af-8e2b-08cebe28d7b7",
+      "id": "60ad300d-1307-40e1-95a4-92e293dada4d",
       "comment": "",
       "command": "setWindowSize",
       "target": "552x652",
       "targets": [],
       "value": ""
     }, {
-      "id": "f1eaf7fe-21ed-4459-800b-92fc5135f10a",
+      "id": "d00a71b3-0153-4fe7-aa8e-2cb9de37f047",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=註冊",
+      "targets": [
+        ["linkText=註冊", "linkText"],
+        ["css=a:nth-child(2)", "css:finder"],
+        ["xpath=//a[contains(text(),'註冊')]", "xpath:link"],
+        ["xpath=//a[contains(@href, '/register')]", "xpath:href"],
+        ["xpath=//p[6]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'註冊')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "0c415b6b-5399-431d-8a52-8d45fd31fa97",
+      "comment": "",
+      "command": "type",
+      "target": "name=username",
+      "targets": [
+        ["name=username", "name"],
+        ["css=p:nth-child(1) > input", "css:finder"],
+        ["xpath=//input[@name='username']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "user"
+    }, {
+      "id": "def28092-1879-4d89-8b40-2412c26e2458",
+      "comment": "",
+      "command": "click",
+      "target": "name=password",
+      "targets": [
+        ["name=password", "name"],
+        ["css=p:nth-child(2) > input", "css:finder"],
+        ["xpath=//input[@name='password']", "xpath:attributes"],
+        ["xpath=//p[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "4ec36d3c-79f3-448a-9bae-dd5a495a2930",
+      "comment": "",
+      "command": "type",
+      "target": "name=password",
+      "targets": [
+        ["name=password", "name"],
+        ["css=p:nth-child(2) > input", "css:finder"],
+        ["xpath=//input[@name='password']", "xpath:attributes"],
+        ["xpath=//p[2]/input", "xpath:position"]
+      ],
+      "value": "user"
+    }, {
+      "id": "ce2fdd85-16c2-417f-9542-ae6542d96818",
+      "comment": "",
+      "command": "click",
+      "target": "name=name",
+      "targets": [
+        ["name=name", "name"],
+        ["css=p:nth-child(3) > input", "css:finder"],
+        ["xpath=//input[@name='name']", "xpath:attributes"],
+        ["xpath=//p[3]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "3cb8f7cf-4ec2-40ce-bb75-fad957f1da57",
+      "comment": "",
+      "command": "type",
+      "target": "name=name",
+      "targets": [
+        ["name=name", "name"],
+        ["css=p:nth-child(3) > input", "css:finder"],
+        ["xpath=//input[@name='name']", "xpath:attributes"],
+        ["xpath=//p[3]/input", "xpath:position"]
+      ],
+      "value": "user"
+    }, {
+      "id": "91f5850f-d9ff-4ef6-8f93-8fa7744cac5f",
+      "comment": "",
+      "command": "click",
+      "target": "css=p:nth-child(4) > input",
+      "targets": [
+        ["css=p:nth-child(4) > input", "css:finder"],
+        ["xpath=//input[@value='註冊']", "xpath:attributes"],
+        ["xpath=//p[4]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "73eecceb-5ad5-44d1-bed2-4faeefd4d260",
       "comment": "",
       "command": "type",
       "target": "name=username",
@@ -33,7 +118,7 @@
       ],
       "value": "user"
     }, {
-      "id": "0117979c-9690-4acb-bfa4-8044b07b0c76",
+      "id": "44dbf046-83cf-4ba3-80a1-4a51495b3dd6",
       "comment": "",
       "command": "click",
       "target": "name=password",
@@ -45,7 +130,7 @@
       ],
       "value": ""
     }, {
-      "id": "4f6dec63-42be-426f-882f-41a26221c190",
+      "id": "a5f4364c-b893-43d2-943d-3fe2a8804709",
       "comment": "",
       "command": "type",
       "target": "name=password",
@@ -57,7 +142,7 @@
       ],
       "value": "user"
     }, {
-      "id": "648ca774-e4b4-4b8a-bfc7-ac2e9452fc20",
+      "id": "f6ce8618-e449-458a-8b8a-1773d3337554",
       "comment": "",
       "command": "click",
       "target": "css=p:nth-child(6) > input",
@@ -68,7 +153,109 @@
       ],
       "value": ""
     }, {
-      "id": "2ae726bb-bfe2-4c85-9a46-c314994d28af",
+      "id": "7bd51b48-af15-4f4b-9291-a5491fad0aca",
+      "comment": "",
+      "command": "click",
+      "target": "id=authBtn",
+      "targets": [
+        ["id=authBtn", "id"],
+        ["css=#authBtn", "css:finder"],
+        ["xpath=//button[@id='authBtn']", "xpath:attributes"],
+        ["xpath=//div[@id='loading']/button", "xpath:idRelative"],
+        ["xpath=//button", "xpath:position"],
+        ["xpath=//button[contains(.,'連結我的資料')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "dffff8e1-25cb-4549-9e3e-0e0dff746d9a",
+      "comment": "",
+      "command": "click",
+      "target": "id=name",
+      "targets": [
+        ["id=name", "id"],
+        ["name=username", "name"],
+        ["css=#name", "css:finder"],
+        ["xpath=//input[@id='name']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "ff3eebfa-6024-4519-9dba-13e91c7c0690",
+      "comment": "",
+      "command": "type",
+      "target": "id=name",
+      "targets": [
+        ["id=name", "id"],
+        ["name=username", "name"],
+        ["css=#name", "css:finder"],
+        ["xpath=//input[@id='name']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "0083230786"
+    }, {
+      "id": "f83bb945-f477-4896-9490-df9229293b0c",
+      "comment": "",
+      "command": "click",
+      "target": "id=password",
+      "targets": [
+        ["id=password", "id"],
+        ["name=password", "name"],
+        ["css=#password", "css:finder"],
+        ["xpath=//input[@id='password']", "xpath:attributes"],
+        ["xpath=//div[3]/div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "92301404-f732-48e1-a3fe-3b5049e29397",
+      "comment": "",
+      "command": "type",
+      "target": "id=password",
+      "targets": [
+        ["id=password", "id"],
+        ["name=password", "name"],
+        ["css=#password", "css:finder"],
+        ["xpath=//input[@id='password']", "xpath:attributes"],
+        ["xpath=//div[3]/div/input", "xpath:position"]
+      ],
+      "value": "0083230786-pwd"
+    }, {
+      "id": "aea5c956-a64d-4710-969c-3d2b62aa314d",
+      "comment": "",
+      "command": "click",
+      "target": "css=.pure-button",
+      "targets": [
+        ["css=.pure-button", "css:finder"],
+        ["xpath=//button[@value='Submit']", "xpath:attributes"],
+        ["xpath=//button", "xpath:position"],
+        ["xpath=//button[contains(.,'Sign in')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "3519da76-5b87-451c-b718-b4ce876b88b3",
+      "comment": "",
+      "command": "click",
+      "target": "id=allow",
+      "targets": [
+        ["id=allow", "id"],
+        ["css=#allow", "css:finder"],
+        ["xpath=//input[@id='allow']", "xpath:attributes"],
+        ["xpath=//div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "23222b18-7af4-4d31-93d6-182d26d328cc",
+      "comment": "",
+      "command": "waitForElementVisible",
+      "target": "css=.radio-inline:nth-child(3)",
+      "targets": [
+        ["css=.radio-inline:nth-child(3)", "css:finder"],
+        ["xpath=//div[@id='chartInfo']/label[2]", "xpath:idRelative"],
+        ["xpath=//label[2]", "xpath:position"],
+        ["xpath=//label[contains(.,'電費(TWD)')]", "xpath:innerText"]
+      ],
+      "value": "1000000"
+    }, {
+      "id": "a5103cd7-3a7a-4f4c-bcf4-e831fbb3004f",
       "comment": "",
       "command": "click",
       "target": "css=.radio-inline:nth-child(3) > input",
@@ -80,7 +267,7 @@
       ],
       "value": ""
     }, {
-      "id": "7175a452-66e6-49f9-9554-222ce5090b5c",
+      "id": "c2435ccb-8bb1-40a6-904b-bb006c150bc1",
       "comment": "",
       "command": "click",
       "target": "linkText=登出",
@@ -94,6 +281,133 @@
         ["xpath=//a[contains(.,'登出')]", "xpath:innerText"]
       ],
       "value": ""
+    }, {
+      "id": "7801a67d-b8d9-4304-ad57-072fe4eb8425",
+      "comment": "",
+      "command": "close",
+      "target": "",
+      "targets": [],
+      "value": ""
+    }]
+  }, {
+    "id": "ed0a4890-a18f-4304-8d98-d1b72791258e",
+    "name": "2. UpdateMyData",
+    "commands": [{
+      "id": "366330e9-56ca-446f-a08a-f70725ed238c",
+      "comment": "",
+      "command": "open",
+      "target": "/login",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "e990e229-2ae6-430f-96b2-1b67d0ffbba4",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "552x652",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "ce0a4734-c076-4a10-83dc-6a60497f35f2",
+      "comment": "",
+      "command": "type",
+      "target": "name=username",
+      "targets": [
+        ["name=username", "name"],
+        ["css=p:nth-child(4) > input", "css:finder"],
+        ["xpath=//input[@name='username']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "user"
+    }, {
+      "id": "a7578883-ddfc-4881-a2ce-a9bf0939d2d5",
+      "comment": "",
+      "command": "click",
+      "target": "name=password",
+      "targets": [
+        ["name=password", "name"],
+        ["css=p:nth-child(5) > input", "css:finder"],
+        ["xpath=//input[@name='password']", "xpath:attributes"],
+        ["xpath=//p[5]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "112bf709-ecde-41b1-9693-bd043ed58de0",
+      "comment": "",
+      "command": "type",
+      "target": "name=password",
+      "targets": [
+        ["name=password", "name"],
+        ["css=p:nth-child(5) > input", "css:finder"],
+        ["xpath=//input[@name='password']", "xpath:attributes"],
+        ["xpath=//p[5]/input", "xpath:position"]
+      ],
+      "value": "user"
+    }, {
+      "id": "a5c1226a-fe5f-4f92-8996-a9c557eefbdf",
+      "comment": "",
+      "command": "click",
+      "target": "css=p:nth-child(6) > input",
+      "targets": [
+        ["css=p:nth-child(6) > input", "css:finder"],
+        ["xpath=//input[@value='登入']", "xpath:attributes"],
+        ["xpath=//p[6]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "ef0e2f00-9f73-4ff0-913d-75d31816e732",
+      "comment": "",
+      "command": "click",
+      "target": "id=updateBtn",
+      "targets": [
+        ["id=updateBtn", "id"],
+        ["css=#updateBtn", "css:finder"],
+        ["xpath=//button[@id='updateBtn']", "xpath:attributes"],
+        ["xpath=//div[@id='loading']/button[2]", "xpath:idRelative"],
+        ["xpath=//button[2]", "xpath:position"],
+        ["xpath=//button[contains(.,'更新我的資料')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "275cab72-cba1-40fc-89bb-d573af35878c",
+      "comment": "",
+      "command": "waitForElementVisible",
+      "target": "css=.radio-inline:nth-child(3) > input",
+      "targets": [],
+      "value": "1000000"
+    }, {
+      "id": "1b2adabd-91fe-4c7f-8b77-ba2f3c78a2b2",
+      "comment": "",
+      "command": "click",
+      "target": "css=.radio-inline:nth-child(3)",
+      "targets": [
+        ["css=.radio-inline:nth-child(3)", "css:finder"],
+        ["xpath=//div[@id='chartInfo']/label[2]", "xpath:idRelative"],
+        ["xpath=//label[2]", "xpath:position"],
+        ["xpath=//label[contains(.,'電費(TWD)')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "9ba553cb-f015-4246-b356-c2dc9b194a15",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=登出",
+      "targets": [
+        ["linkText=登出", "linkText"],
+        ["css=.ml-auto .nav-link", "css:finder"],
+        ["xpath=//a[contains(text(),'登出')]", "xpath:link"],
+        ["xpath=//div[@id='collapsibleNavbar']/ul[2]/li/a", "xpath:idRelative"],
+        ["xpath=//a[contains(@href, 'perform_logout')]", "xpath:href"],
+        ["xpath=//li/a", "xpath:position"],
+        ["xpath=//a[contains(.,'登出')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "eec4bb2b-0bd8-41a4-9ab1-37f5120e7bd1",
+      "comment": "",
+      "command": "close",
+      "target": "",
+      "targets": [],
+      "value": ""
     }]
   }],
   "suites": [{
@@ -102,7 +416,7 @@
     "persistSession": false,
     "parallel": false,
     "timeout": 300,
-    "tests": ["eeb6cb5a-f237-468c-8926-616daa8bb010"]
+    "tests": []
   }],
   "urls": ["http://localhost:8090/"],
   "plugins": []
