@@ -19,6 +19,7 @@ import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
+import org.springframework.web.client.HttpStatusCodeException;
 import org.springframework.web.client.RestTemplate;
 
 import java.io.StringReader;
@@ -41,12 +42,19 @@ public class CMDService {
         String url = "http://140.121.196.23:6020/RetailCustomer/" + authorization.getNumber() + "/DownloadMyData/UsagePoint";
         ClientHttpRequestFactory requestFactory = new HttpComponentsClientHttpRequestFactory(HttpClients.createDefault());
         RestTemplate restTemplate = new RestTemplate(requestFactory);
-        //HttpHeaders headers = new HttpHeaders();
-      //  headers.set("Authorization", authorization.getTokenType() + " " + authorization.getAccessToken());
-        //HttpEntity<MultiValueMap<String, String>> requestEntity = new HttpEntity<MultiValueMap<String, String>>(null, headers);
-
-        ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.GET, null, String.class);
-        redisTemplate.opsForValue().set(authorization.getNumber(), gson.toJson(parseXML(response.getBody())));
+        HttpHeaders headers = new HttpHeaders();
+        headers.set("Authorization", authorization.getTokenType() + " " + authorization.getAccessToken());
+        HttpEntity<MultiValueMap<String, String>> requestEntity = new HttpEntity<MultiValueMap<String, String>>(null, headers);
+        ResponseEntity<String> response = null;
+        try {
+            response = restTemplate.exchange(url, HttpMethod.GET, requestEntity, String.class);
+        } catch (HttpStatusCodeException exception) {
+            System.out.println("Error code: "+exception.getStatusCode().value());
+            System.out.println("Sending request again!");
+            restTemplate.exchange(url, HttpMethod.GET, requestEntity, String.class);
+        } finally {
+            redisTemplate.opsForValue().set(authorization.getNumber(), gson.toJson(parseXML(response.getBody())));
+        }
     }
 
     private UsagePoint parseXML(String xml){
