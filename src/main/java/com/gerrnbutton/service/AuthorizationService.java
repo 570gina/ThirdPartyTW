@@ -42,8 +42,6 @@ public class AuthorizationService {
     private AuthorizationRepository authorizationRepository;
     @Autowired
     private UserRepository userRepository;
-    @Value("${server.address}")
-    private String serverAddress;
     @Value("${server.port}")
     private String serverPort;
 
@@ -57,7 +55,7 @@ public class AuthorizationService {
         headers.set("Authorization", "Basic " + b64_basic);
         MultiValueMap<String, String> params= new LinkedMultiValueMap<String, String>();
         params.add("code", code);
-        String redirect_uri =  "http://"+serverAddress+":"+serverPort+"/redirect";
+        String redirect_uri =  "http://"+"140.121.197.129"+":"+serverPort+"/redirect";
         params.add("redirect_uri", redirect_uri);
         params.add("grant_type", "authorization_code");
         HttpEntity<MultiValueMap<String, String>> requestEntity = new HttpEntity<MultiValueMap<String, String>>(params, headers);

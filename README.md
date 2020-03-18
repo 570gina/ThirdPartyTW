@@ -65,14 +65,14 @@
 
 - ### 變數配置
 	1. src/main/resources/application.properties
-		- [server.address]：伺服器 ip (預設為 localhost)
+		- [server.address]：伺服器 ip (預設為 localhost) (測試中)
 		- [server.port]：連接的 port (預設為 8090)
 		- [spring.datasource.username]：MySQL 使用者名稱 (預設為 root)
 		- [spring.datasource.password]：MySQL 密碼
 		- [spring.redis.password]：Redis 密碼 (預設為空)
     
 	1. src\main\resources\templates.Index.html
-  		- 第35行-通過 OAuth 後重新導向 [server.address]:[server.port]
+  		- 第35行-通過 OAuth 後重新導向 [server.address]:[server.port] (測試中)
 		(預設為 localhost:8090)
 		```
 		onclick="javascript:location.href='https://140.96.170.47:60107/dialog/authorize?redirect_uri=http://localhost:8090/redirect&response_type=code&client_id=THIRD_PARTY&scope=FB=1_3_4_5_13_14'" 
@@ -95,7 +95,7 @@
   ```bash
   java -jar ThirdPartyTW-1.0-SNAPSHOT.jar
   ```
-  開啟瀏覽器輸入所設定[server.address]:[server.port] (預設為localhost:8090)
+  開啟瀏覽器輸入所設定[server.address]:[server.port] (預設為localhost:8090) (測試中)
 
 -----------
 
